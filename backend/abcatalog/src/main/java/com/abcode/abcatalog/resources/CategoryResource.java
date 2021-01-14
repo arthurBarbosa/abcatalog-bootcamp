@@ -1,5 +1,6 @@
 package com.abcode.abcatalog.resources;
 
+import com.abcode.abcatalog.dto.CategoryDTO;
 import com.abcode.abcatalog.entities.Category;
 import com.abcode.abcatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,7 @@ public class CategoryResource {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll(){
-        var list = service.findAll();
-        return  ResponseEntity.ok().body(list);
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        return ResponseEntity.ok().body(service.findAll());
     }
 }
