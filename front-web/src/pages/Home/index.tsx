@@ -16,7 +16,7 @@ const Home = () => (
           produtos disponíveis no mercado.
         </p>
 
-        <Link to="/catalog">
+        <Link to="/products">
           <ButtonIcon text="inicie agora sua busca" />
         </Link>
       </div>
