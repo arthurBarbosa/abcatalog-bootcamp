@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCard from "./components/ProductCard";
 import { makeRequest } from "../../core/utils/request";
 import { ProductResponse } from "../../core/types/Product";
-import ProductCardLoader from "./components/ProductCardLoader";
+import ProductCardLoader from "./components/Loaders/ProductCardLoader";
 import "./styles.scss";
 
 const Catalog = () => {
