@@ -1,14 +1,19 @@
 import React from "react";
-import './styles.scss';
+import "./styles.scss";
 
 type Props = {
-  price: string;
+  price: number;
 };
+
+const formtaPrice = (price: number) => {
+  return new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2 }).format(price);
+};
+
 const ProductPrice = ({ price }: Props) => (
   <div className="product-price-container">
     <span className="product-currency">R$</span>
     <h3 className="product-price">
-        { price }
+      {formtaPrice(price)}
     </h3>
   </div>
 );
