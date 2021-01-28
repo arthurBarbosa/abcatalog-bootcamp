@@ -2,8 +2,8 @@ import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./components/ProductCard";
-import { makeRequest } from "../../core/utils/request";
-import { ProductResponse } from "../../core/types/Product";
+import { makeRequest } from "core/utils/request";
+import { ProductResponse } from "core/types/Product";
 import ProductCardLoader from "./components/Loaders/ProductCardLoader";
 import "./styles.scss";
 
