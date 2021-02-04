@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  border: 1px solid #407bff;
   margin-top: 35px;
   margin-bottom: 45px;
 }
@@ -33,7 +32,7 @@
 .pagination-previous {
   margin-right: 25px;
   display: flex;
-  color: #E1E1E1;
+  color: #e1e1e1;
   cursor: pointer;
   transform: rotate(-180deg);
 }
@@ -41,6 +40,16 @@
 .pagination-next {
   margin-left: 15px;
   display: flex;
-  color: #407BFF;
+  color: #407bff;
   cursor: pointer;
+}
+
+.page-active {
+  cursor: pointer;
+  color: #407bff;
+}
+
+.page-inactive {
+  color: #e1e1e1;
+  pointer-events: none;
 }
