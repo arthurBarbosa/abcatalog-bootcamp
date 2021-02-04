@@ -1,12 +1,13 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
+import List from './List';
 
 const Products = () => {
   return (
     <div>
       <Switch>
         <Route path="/admin/products" exact>
-          <h1>Exibir a listagem de produtos</h1>
+          <List />
         </Route>
         <Route path="/admin/products/create">
           <h1>Novo produto</h1>
