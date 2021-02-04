@@ -1,8 +1,9 @@
-import React from   'react'
+import Navbar from './components/NavBar';
+import React from 'react'
 
 const Admin = () => (
     <div>
-        <h1>Admin</h1>
+        <Navbar />
     </div>
 )
 
