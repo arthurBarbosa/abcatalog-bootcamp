@@ -1,7 +1,10 @@
 package com.abcode.abcatalog.dto;
 
 import com.abcode.abcatalog.entities.User;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +12,13 @@ import java.util.Set;
 public class UserDTO implements Serializable {
 
     private Long id;
+
+    @Length(min = 3,max = 60, message ="Nome deve estar entre 3 e 5 caracteres" )
+    @NotBlank(message = "Por favor preencha o campo nome")
     private String firstName;
     private String lastName;
+
+    @Email(message = "Email com formato inválido")
     private String email;
 
     private Set<RoleDTO> roles = new HashSet<>();
