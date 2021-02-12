@@ -1,5 +1,8 @@
 package com.abcode.abcatalog.dto;
 
+import com.abcode.abcatalog.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
     private String password;
