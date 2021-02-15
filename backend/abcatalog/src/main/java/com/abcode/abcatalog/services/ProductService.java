@@ -2,6 +2,7 @@ package com.abcode.abcatalog.services;
 
 import com.abcode.abcatalog.dto.CategoryDTO;
 import com.abcode.abcatalog.dto.ProductDTO;
+import com.abcode.abcatalog.entities.Category;
 import com.abcode.abcatalog.entities.Product;
 import com.abcode.abcatalog.repositories.CategoryRepository;
 import com.abcode.abcatalog.repositories.ProductRepository;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -26,8 +29,9 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
-        var list = repository.findAll(pageRequest);
+    public Page<ProductDTO> findAllPaged(Long categoryId, String name, PageRequest pageRequest) {
+        List<Category> categories = (categoryId == 0) ? null : Arrays.asList(categoryRepository.getOne(categoryId));
+        var list = repository.find(categories, name, pageRequest);
         return list.map(ProductDTO::new);
     }
 
@@ -78,7 +82,7 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
 
         entity.getCategories().clear();
-        for(CategoryDTO catDto : dto.getCategories()){
+        for (CategoryDTO catDto : dto.getCategories()) {
             var category = categoryRepository.getOne(catDto.getId());
             entity.getCategories().add(category);
         }
