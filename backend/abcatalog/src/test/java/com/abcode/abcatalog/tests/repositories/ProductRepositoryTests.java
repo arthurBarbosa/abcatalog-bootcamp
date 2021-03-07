@@ -12,6 +12,8 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -25,12 +27,14 @@ public class ProductRepositoryTests {
     private long existingId;
     private long nonExistingId;
     private Long countToTalProducts;
+    private Long countPCGamerProducts;
 
     @BeforeEach
     void setUp() throws Exception {
         existingId = 1L;
         nonExistingId = 1000L;
         countToTalProducts = 25L;
+        countPCGamerProducts = 21L;
     }
 
     @Test
@@ -64,6 +68,19 @@ public class ProductRepositoryTests {
         Assertions.assertEquals(countToTalProducts + 1L, product.getId());
         Assertions.assertTrue(result.isPresent());
         Assertions.assertSame(result.get(), product);
+    }
+
+    @Test
+    public void findShouldReturnProductsWhenNameExists(){
+
+        String name = "PC Gamer";
+        PageRequest pageRequest = PageRequest.of(0, 10);
+
+        Page<Product> result = productRepository.find(null, name, pageRequest);
+
+        Assertions.assertFalse(result.isEmpty());
+        Assertions.assertEquals(countPCGamerProducts, result.getTotalElements());
+
     }
 
 }
