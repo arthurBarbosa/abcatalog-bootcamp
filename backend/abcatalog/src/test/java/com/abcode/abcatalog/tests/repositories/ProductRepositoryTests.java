@@ -83,4 +83,17 @@ public class ProductRepositoryTests {
 
     }
 
+    @Test
+    public void findShouldReturnProductsWhenNameExistsIgnoreCase(){
+
+        String name = "pc gAMer";
+        PageRequest pageRequest = PageRequest.of(0, 10);
+
+        Page<Product> result = productRepository.find(null, name, pageRequest);
+
+        Assertions.assertFalse(result.isEmpty());
+        Assertions.assertEquals(countPCGamerProducts, result.getTotalElements());
+
+    }
+
 }
