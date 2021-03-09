@@ -28,6 +28,7 @@ public class ProductServiceTests {
     @BeforeEach
     void setUp() throws Exception {
         existingId = 1L;
+        nonExistingId= 1000L;
 
         Mockito.doNothing().when(repository).deleteById(existingId);
 
