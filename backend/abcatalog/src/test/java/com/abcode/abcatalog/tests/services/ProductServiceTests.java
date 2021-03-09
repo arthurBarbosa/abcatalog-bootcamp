@@ -2,6 +2,7 @@ package com.abcode.abcatalog.tests.services;
 
 import com.abcode.abcatalog.repositories.ProductRepository;
 import com.abcode.abcatalog.services.ProductService;
+import com.abcode.abcatalog.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ public class ProductServiceTests {
     private long nonExistingId;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         existingId = 1L;
 
         Mockito.doNothing().when(repository).deleteById(existingId);
@@ -41,5 +42,16 @@ public class ProductServiceTests {
         });
 
         Mockito.verify(repository, Mockito.times(1)).deleteById(existingId);
+
+    }
+
+    @Test
+    public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists(){
+
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.delete(nonExistingId);
+        });
+
+        Mockito.verify(repository, Mockito.times(1)).deleteById(nonExistingId);
     }
 }
