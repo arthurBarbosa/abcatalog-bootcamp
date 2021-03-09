@@ -1,21 +1,21 @@
 package com.abcode.abcatalog.tests.repositories;
 
-import com.abcode.abcatalog.dto.ProductDTO;
+import com.abcode.abcatalog.entities.Category;
 import com.abcode.abcatalog.entities.Product;
 import com.abcode.abcatalog.repositories.ProductRepository;
+import com.abcode.abcatalog.tests.factory.CategoryFactory;
 import com.abcode.abcatalog.tests.factory.ProductFactory;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -105,6 +105,21 @@ public class ProductRepositoryTests {
 
         Assertions.assertFalse(result.isEmpty());
         Assertions.assertEquals(countToTalProducts, result.getTotalElements());
+
+    }
+
+    @Test
+    public void findShouldReturnAllProductsByCategoryWhenCategoriesIdNotNull() {
+
+        String name = "";
+        Category category = CategoryFactory.createCategory();
+
+        List<Category> categories = CategoryFactory.getCategories(Arrays.asList(category));
+
+        Page<Product> result = productRepository.find(categories, "", pageRequest);
+
+        Assertions.assertFalse(result.isEmpty());
+        Assertions.assertEquals(1, result.getTotalElements());
 
     }
 }
