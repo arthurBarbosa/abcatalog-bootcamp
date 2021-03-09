@@ -122,4 +122,16 @@ public class ProductRepositoryTests {
         Assertions.assertEquals(1, result.getTotalElements());
 
     }
+
+    @Test
+    public void findShouldReturnNothingProductsWhenNameDoesNotExists() {
+
+        String name = "Camera";
+
+        Page<Product> result = productRepository.find(null, name, pageRequest);
+
+        Assertions.assertTrue(result.isEmpty());
+
+
+    }
 }
