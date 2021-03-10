@@ -6,6 +6,7 @@ import com.abcode.abcatalog.entities.Product;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import java.util.Set;
 public class ProductDTO implements Serializable {
 
     private Long id;
-    @NotBlank(message = "Nome do produto não pode ser vazio.")
+//    @NotBlank(message = "Nome do produto não pode ser vazio.")
     private String name;
     private String description;
-    @Positive(message = "Preço não pode ser menor que 0")
+    @PositiveOrZero(message = "Preço não pode ser menor que 0")
     private Double price;
     private String imgUrl;
     @PastOrPresent(message = "Data inválida")
