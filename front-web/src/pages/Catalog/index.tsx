@@ -1,6 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import ProductCard from "./components/ProductCard";
 import { makeRequest } from "core/utils/request";
 import { ProductResponse } from "core/types/Product";
@@ -34,12 +33,12 @@ const Catalog = () => {
         {isLoading ? (
           <ProductCardLoader />
         ) : (
-            productResponse?.content.map((product) => (
-              <Link to={`/products/${product.id}`} key={product.id}>
-                <ProductCard product={product} />
-              </Link>
-            ))
-          )}
+          productResponse?.content.map((product) => (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <ProductCard product={product} />
+            </Link>
+          ))
+        )}
       </div>
       {productResponse && (
         <Pagination

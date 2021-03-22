@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ReactComponent as AuthImage } from 'core/assets/images/auth.svg';
 import './styles.scss';
 import { Route, Switch } from 'react-router';
