@@ -39,12 +39,9 @@ export const getAccessTokenDecoded = () => {
 }
 
 export const isTokenValid = () => {
-  const {exp} = getAccessTokenDecoded();
+  const { exp } = getAccessTokenDecoded();
 
-  if(Date.now() <= exp *1000){
-    return true;
-  }
-  return false;
+  return Date.now() <= exp * 1000;
 }
 
 export const isAuthentication = () => {
