@@ -11,12 +11,12 @@ const List = () => {
   const [activePage, setActivePage] = useState(0);
   const history = useHistory();
 
-  console.log(productResponse)
-
   useEffect(() => {
     const params = {
       page: activePage,
       linesPerPage: 4,
+      direction: 'DESC',
+      orderBy: 'id'
     };
 
     setIsLoading(true);
@@ -37,9 +37,9 @@ const List = () => {
         ADICIONAR
       </button>
       <div className="admin-list-container">
-       {productResponse?.content.map(product => (
-         <Card product={product} key={product.id}/>
-       ))}
+        {productResponse?.content.map(product => (
+          <Card product={product} key={product.id} />
+        ))}
       </div>
 
       {productResponse && (

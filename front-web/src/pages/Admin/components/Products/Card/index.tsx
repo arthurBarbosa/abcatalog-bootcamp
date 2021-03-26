@@ -1,13 +1,14 @@
 import ProductPrice from 'core/components/ProductPrice'
 import { Product } from 'core/types/Product'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './styles.scss'
 
 type Props = {
- product: Product;
+  product: Product;
 }
 
-const Card = ({product}: Props) => {
+const Card = ({ product }: Props) => {
   return (
     <div className="card-base product-card-admin">
       <div className="row">
@@ -28,8 +29,12 @@ const Card = ({product}: Props) => {
         </div>
 
         <div className="col-3 pt-3 pr-5">
-         <button type="button" className="btn btn-outline-secondary btn-block border-radius-10 mb-3 btn-edit">EDITAR</button>
-         <button type="button" className="btn btn-outline-danger btn-block border-radius-10">EXCLUIR</button>
+          <Link to={`/admin/products/${product.id}`}
+            type="button"
+            className="btn btn-outline-secondary btn-block border-radius-10 mb-3 btn-edit">
+            EDITAR
+          </Link>
+          <button type="button" className="btn btn-outline-danger btn-block border-radius-10">EXCLUIR</button>
         </div>
       </div>
     </div>
