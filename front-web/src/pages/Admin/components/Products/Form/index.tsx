@@ -7,8 +7,9 @@ import Select from 'react-select'
 import './styles.scss';
 import { useHistory, useParams } from 'react-router';
 import { Category } from 'core/types/Product';
+import PriceField from './PriceField';
 
-type FormState = {
+export type FormState = {
   name: string;
   price: string;
   description: string;
@@ -88,6 +89,7 @@ const Form = () => {
               <Controller
                 as={Select}
                 name="categories"
+                defaultValue=""
                 rules={{ required: true }}
                 control={control}
                 isLoading={isLoadingCategories}
@@ -106,7 +108,7 @@ const Form = () => {
             </div>
 
             <div className="margin-bottom-30">
-              <input ref={register({ required: "Campo obrigatório" })} name="price" type="number" className="form-control  input-base" placeholder="Preço" />
+              <PriceField control={control} />
 
               {errors.price && (
                 <div className="invalid-feedback d-block">
