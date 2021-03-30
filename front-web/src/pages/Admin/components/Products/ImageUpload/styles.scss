@@ -23,7 +23,8 @@
 .upload-placeholder {
   .upload-progress-container {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
+    left: 28px;
     height: 10px;
     background: #e1e1e1;
     width: 175px;
@@ -33,7 +34,6 @@
   .upload-progress {
     background: #407bff;
     height: 10px;
-    width: 25%;
-    border-radius: 100px;
+    border-radius: 10px;
   }
 }
