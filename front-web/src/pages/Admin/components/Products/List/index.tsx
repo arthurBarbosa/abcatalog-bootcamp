@@ -71,8 +71,6 @@ const List = () => {
             activePage={activePage}
             onChange={page => setActivePage(page)} />)}
       </div>
-
-
     </div>
   )
 }
