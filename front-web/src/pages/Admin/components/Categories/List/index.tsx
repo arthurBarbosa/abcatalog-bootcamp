@@ -5,11 +5,13 @@ import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import CardLoader from '../../Products/Loaders/ProductCardLoader';
 import Pagination from 'core/components/Pagination';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router';
 
 const List = () => {
   const [categoryResponse, setCategoryResponse] = useState<CategoryResponse>();
   const [isLoading, setIsLoading] = useState(false);
   const [activePage, setActivePage] = useState(0);
+  const history = useHistory();
 
   const getCategories = useCallback(() => {
     const params = {
@@ -44,9 +46,13 @@ const List = () => {
         })
     }
   }
+
+  const handleCreate = () => {
+    history.push('/admin/categories/create')
+  }
   return (
     <div>
-      <button className="btn btn-primary btn-lg">
+      <button className="btn btn-primary btn-lg" onClick={handleCreate}>
         ADICIONAR
       </button>
       <div className="admin-list-container">
