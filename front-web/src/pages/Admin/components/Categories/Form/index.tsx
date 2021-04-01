@@ -1,5 +1,4 @@
 import { makePrivateRequest, makeRequest } from 'core/utils/request';
-import { url } from 'inspector';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router';
@@ -15,7 +14,7 @@ type ParamsType = {
 }
 
 const Form = () => {
-  const { register, handleSubmit, errors, setValue, control } = useForm<FormState>();
+  const { register, handleSubmit, errors, setValue } = useForm<FormState>();
   const history = useHistory();
   const { categoryId } = useParams<ParamsType>();
   const isEditing = categoryId !== 'create';
