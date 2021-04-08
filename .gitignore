@@ -35,6 +35,18 @@ build/
 ### Eclipse ###
 .metadata
 
+expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
 
 ### Mac ###
 .DS_Store
