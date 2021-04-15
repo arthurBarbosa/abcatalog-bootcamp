@@ -139,6 +139,30 @@ const theme = StyleSheet.create({
   priceContainer: {
     flexDirection: 'row',
     marginTop: 10
+  },
+
+  // Search Input
+  inputContainer: {
+    width: '100%',
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    shadowColor: colors.black,
+    marginVertical: 12.5,
+    paddingVertical: 10,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+
+  searchInput: {
+    width: '90%',
+    height: 40,
+    borderBottomWidth: 0.5
+    , borderBottomColor: colors.darkGray
   }
 })
 
