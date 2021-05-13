@@ -2,6 +2,7 @@ package com.abcode.abcatalog.services;
 
 import com.abcode.abcatalog.dto.CategoryDTO;
 import com.abcode.abcatalog.dto.ProductDTO;
+import com.abcode.abcatalog.dto.UriDTO;
 import com.abcode.abcatalog.entities.Category;
 import com.abcode.abcatalog.entities.Product;
 import com.abcode.abcatalog.repositories.CategoryRepository;
@@ -15,8 +16,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +30,8 @@ public class ProductService {
     private ProductRepository repository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private S3Service s3Service;
 
     @Transactional(readOnly = true)
     public Page<ProductDTO> findAllPaged(Long categoryId, String name, PageRequest pageRequest) {
@@ -47,7 +52,7 @@ public class ProductService {
     public ProductDTO insert(ProductDTO dto) {
         Product entity = new Product();
         copyDtoToEntity(dto, entity);
-        if(entity.getCategories().size() == 0){ // TODO: remove
+        if (entity.getCategories().size() == 0) { // TODO: remove
             Category category = new Category();
             category.setId(1L);
             entity.getCategories().add(category);
@@ -61,7 +66,7 @@ public class ProductService {
         try {
             Product entity = repository.getOne(id);
             copyDtoToEntity(dto, entity);
-            if(entity.getCategories().size() == 0){ // TODO: remove
+            if (entity.getCategories().size() == 0) { // TODO: remove
                 Category category = new Category();
                 category.setId(1L);
                 entity.getCategories().add(category);
@@ -97,5 +102,10 @@ public class ProductService {
             var category = categoryRepository.getOne(catDto.getId());
             entity.getCategories().add(category);
         }
+    }
+
+    public UriDTO uploadImage(MultipartFile file) {
+        URL url = s3Service.uploadFile(file);
+        return new UriDTO(url.toString());
     }
 }

@@ -1,6 +1,7 @@
 package com.abcode.abcatalog.resources;
 
 import com.abcode.abcatalog.dto.ProductDTO;
+import com.abcode.abcatalog.dto.UriDTO;
 import com.abcode.abcatalog.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -55,5 +57,11 @@ public class ProductResource {
     public ResponseEntity<ProductDTO> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/image")
+    public ResponseEntity<UriDTO> uploadImage(@RequestParam MultipartFile file){
+        UriDTO dto = service.uploadImage(file);
+        return ResponseEntity.ok().body(dto);
     }
 }
